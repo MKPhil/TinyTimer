@@ -1,4 +1,6 @@
-﻿namespace TimerDemo
+﻿using System.Windows.Forms;
+
+namespace TimerDemo
 {
     partial class Form1
     {
@@ -29,12 +31,30 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.SuspendLayout();
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Icon = this.Icon;
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            // 
+            // Form1
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Name = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Resize += new System.EventHandler(this.Form1_Resize);
+            this.ResumeLayout(false);
+            this.ShowInTaskbar = false;
+
         }
 
         #endregion
+
+        private NotifyIcon notifyIcon1;
     }
 }
 
