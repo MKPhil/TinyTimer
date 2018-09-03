@@ -46,5 +46,32 @@ namespace TimerDemo
             }
         }
 
+        //Let's not make things any more difficult than they need to be. I've come across so many snippets of code that allow you to drag a form around(or another Control). And many of them have their own drawbacks/side effects.Especially those ones where they trick Windows into thinking that a Control on a form is the actual form.
+        //That being said, here is my snippet. I use it all the time. I'd also like to note that you should not use this.Invalidate(); as others like to do because it causes the form to flicker in some cases. And in some cases so does this.Refresh. Using this.Update, I have not had any flickering issues:
+        //https://stackoverflow.com/questions/1592876/make-a-borderless-form-movable
+        private bool mouseDown;
+        private Point lastLocation;
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+            lastLocation = e.Location;
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                this.Location = new Point(
+                    (this.Location.X - lastLocation.X) + e.X, (this.Location.Y - lastLocation.Y) + e.Y);
+
+                this.Update();
+            }
+        }
+
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
     }
 }
