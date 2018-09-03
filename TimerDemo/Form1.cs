@@ -36,6 +36,7 @@ namespace TimerDemo
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+            // doubleclicking the notifyIcon toggles between minimized or normal window
             if (this.WindowState == FormWindowState.Minimized) { 
                 Show();
                 this.WindowState = FormWindowState.Normal;
