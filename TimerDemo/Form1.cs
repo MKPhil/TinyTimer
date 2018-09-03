@@ -16,7 +16,7 @@ namespace TimerDemo
         public Form1()
         {
             InitializeComponent();
-
+            timer = new Stopwatch();
             //PreviewKeyDown += new KeyEventHandler(HandleEsc);
         }
 
@@ -101,124 +101,27 @@ namespace TimerDemo
             Form1_MouseUp(sender, e);
         }
 
-
-        //private DispatcherTimer demoDispatcher;
-        private int timesTicked = 1;
-        private double ProgressAmount = 0;
-        private int sec = 0;
-        private int min = 0;
-        private int hour = 0;
-
-        private DateTime startedTime;
-        private TimeSpan timePassed, timeSinceLastStop;
-
+        private Timer demoDispatcher;
         private Stopwatch timer;
-        //= new Stopwatch();
-
-       // public MainPage()
-        //{
-        //    this.InitializeComponent();
-        //    timer = new Stopwatch();
-       // }
-
-        //bool isStop = false;
-        //private void Start_Click(object sender, RoutedEventArgs e)
-       // {
-        //    if (isStop == false)
-         //   {
-          //      isStop = true;
-           //     startedTime = DateTime.Now;
-            //    DispatcherTimerSetup();
-
-                //                Start.Content = "Stop";
-
-             //   timer.Start();
-        //    }
-          //  else
-            //{
-              //  isStop = false;
-                //dispatcherTimer.Stop();
-               // demoDispatcher.Stop();
-                //Hour.Text = "00:00:00";
-                //                  Start.Content = "Start";
-
-                //timer.Stop();
-           //     UsageTime.Text = timer.Elapsed.ToString();
-            //}
-        //}
-
-        //protected override void OnNavigatedTo(NavigationEventArgs e)
-       // {
-         //   base.OnNavigatedTo(e);
-
-       // }
-
+        
         private void DispatcherTimerSetup()
         {
-            timeSinceLastStop = TimeSpan.Zero;
-            //Hour.Text = "00:00:00";
-            //demoDispatcher = new DispatcherTimer();
-            //demoDispatcher.Tick += DemoDispatcher_Tick;
-            //demoDispatcher.Interval = new TimeSpan(0, 0, 0, 0, 1);
-            //demoDispatcher.Start();
+            demoDispatcher = new Timer();
+            demoDispatcher.Tick += DemoDispatcher_Tick;
+            demoDispatcher.Interval = 1; 
+            demoDispatcher.Start();
 
-            //timer.interval
             timer.Start();
         }
 
-        //private void Page_Loaded(object sender, RoutedEventArgs e)
-       // {
-       //     isStop = true;
-       //     startedTime = DateTime.Now;
-       //     DispatcherTimerSetup();
-
-            //                Start.Content = "Stop";
-        //}
-
-        private string MakeDigitString(int number, int count)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            string result = "0";
-            if (count == 2)
-            {
-                if (number < 10)
-                    result = "0" + number;
-                else
-                    result = number.ToString();
-            }
-            else if (count == 3)
-            {
-                if (number < 10)
-                    result = "00" + number;
-                else if (number > 9 && number < 100)
-                {
-                    result = "0" + number;
-                }
-                else
-                    result = number.ToString();
-            }
-            return result;
+            DispatcherTimerSetup();
         }
-
+        
         private void DemoDispatcher_Tick(object sender, object e)
         {
-            timePassed = DateTime.Now - startedTime;
-        //    Hour.Text = MakeDigitString((timeSinceLastStop + timePassed).Hours, 2) + ":"
-        //        + MakeDigitString((timeSinceLastStop + timePassed).Minutes, 2) + ":"
-        //        + MakeDigitString((timeSinceLastStop + timePassed).Seconds, 2);
-            //+":"
-            //+ MakeDigitString((timeSinceLastStop + timePassed).Milliseconds,3);
             timerDisplay.Text = timer.Elapsed.ToString();
-        }
-
-
-
-        private void dispatcherTimer_Tick(object sender, object e)
-        {
-            timesTicked++;
-
-            ProgressAmount += (1.0 / 60.0) * (7.95 / 60.0);
-            if (ProgressAmount > 1.0)
-                ProgressAmount = 0.0;
         }
     }
 
