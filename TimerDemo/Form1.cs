@@ -45,5 +45,6 @@ namespace TimerDemo
                 this.WindowState = FormWindowState.Minimized;
             }
         }
+
     }
 }
