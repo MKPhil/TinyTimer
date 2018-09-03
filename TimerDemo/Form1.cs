@@ -30,13 +30,19 @@ namespace TimerDemo
             if (this.WindowState == FormWindowState.Minimized)
             {
                 Hide();
+
             }
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Show();
-            this.WindowState = FormWindowState.Normal;
+            if (this.WindowState == FormWindowState.Minimized) { 
+                Show();
+                this.WindowState = FormWindowState.Normal;
+            } else if (this.WindowState == FormWindowState.Normal) {
+                Hide();
+                this.WindowState = FormWindowState.Minimized;
+            }
         }
     }
 }
