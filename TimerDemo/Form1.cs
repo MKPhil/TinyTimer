@@ -73,5 +73,20 @@ namespace TimerDemo
         {
             mouseDown = false;
         }
+
+        private void label1_MouseDown(object sender, MouseEventArgs e)
+        {
+            Form1_MouseDown(sender, e);
+        }
+
+        private void label1_MouseMove(object sender, MouseEventArgs e)
+        {
+            Form1_MouseMove(sender, e);
+        }
+
+        private void label1_MouseUp(object sender, MouseEventArgs e)
+        {
+            Form1_MouseUp(sender, e);
+        }
     }
 }
