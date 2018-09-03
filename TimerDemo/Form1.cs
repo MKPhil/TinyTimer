@@ -15,6 +15,14 @@ namespace TimerDemo
         public Form1()
         {
             InitializeComponent();
+        
+            //PreviewKeyDown += new KeyEventHandler(HandleEsc);
+        }
+
+        private void HandleEsc(object sender, KeyEventArgs e)
+        {
+            //if (e.Key == Key.Escape)
+            //    Close();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
