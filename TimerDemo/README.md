@@ -1,6 +1,6 @@
-My kids wanted an app that showed the how long they'd been using the PC that day to help them manage their screen usage, and nothing I could find really satisfed me, so I decided to roll my own!
+My kids wanted an app that showed them how long they'd been using the PC that day to help them manage their screen usage, and nothing I could find really satisfed me, so I decided to roll my own!
 
-Requirements / Features:
+## Features:
 * Always on top
 * Drag the window to move
 * Puts an icon in Notification Area (aka System Tray), not Taskbar
@@ -10,9 +10,9 @@ Requirements / Features:
 * Zero-footprint - Doesn't store anything on local file system or in the registry
 * Resets each day or at midnight if you're logged on then!
 
-Caveats:
+## Caveats:
 * If user logs off completely and on again (or reboots the computer) the timer resets (i.e. doesn't remember the earlier session)
 * Cannot change colours, window size
 
-What it doesn't do:
+## What it doesn't do:
 * Control, log or limit screen time (I have other solutions for that)
