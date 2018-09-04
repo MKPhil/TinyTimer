@@ -134,7 +134,14 @@ namespace TimerDemo
             if (DateTime.Today != lastDate)
             {
                 lastDate = DateTime.Today;
-                timer.Restart();
+                if (timer.IsRunning)
+                {
+                    timer.Restart();
+                }
+                else
+                {
+                    timer.Reset();
+                }
             }
             timerDisplay.Text = timer.Elapsed.ToString(@"hh\:mm\:ss");
         }
