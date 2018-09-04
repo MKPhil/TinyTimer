@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 
@@ -13,6 +7,11 @@ namespace TimerDemo
 {
     public partial class Form1 : Form
     {
+        private bool mouseDown;
+        private Point lastLocation;
+        private Timer demoDispatcher;
+        private Stopwatch timer;
+
         public Form1()
         {
             InitializeComponent();
@@ -39,7 +38,6 @@ namespace TimerDemo
             if (this.WindowState == FormWindowState.Minimized)
             {
                 Hide();
-
             }
         }
 
@@ -57,12 +55,6 @@ namespace TimerDemo
                 this.WindowState = FormWindowState.Minimized;
             }
         }
-
-        //Let's not make things any more difficult than they need to be. I've come across so many snippets of code that allow you to drag a form around(or another Control). And many of them have their own drawbacks/side effects.Especially those ones where they trick Windows into thinking that a Control on a form is the actual form.
-        //That being said, here is my snippet. I use it all the time. I'd also like to note that you should not use this.Invalidate(); as others like to do because it causes the form to flicker in some cases. And in some cases so does this.Refresh. Using this.Update, I have not had any flickering issues:
-        //https://stackoverflow.com/questions/1592876/make-a-borderless-form-movable
-        private bool mouseDown;
-        private Point lastLocation;
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -100,9 +92,6 @@ namespace TimerDemo
         {
             Form1_MouseUp(sender, e);
         }
-
-        private Timer demoDispatcher;
-        private Stopwatch timer;
         
         private void DispatcherTimerSetup()
         {
@@ -121,10 +110,12 @@ namespace TimerDemo
         
         private void DemoDispatcher_Tick(object sender, object e)
         {
-            timerDisplay.Text = timer.Elapsed.ToString();
+            timerDisplay.Text = timer.Elapsed.ToString(@"hh\:mm\:ss");
+        }
+
+        private void timerDisplay_Click(object sender, EventArgs e)
+        {
+
         }
     }
-
-}
-
-    
+} 

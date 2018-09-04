@@ -31,6 +31,7 @@ namespace TimerDemo
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.timerDisplay = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -52,6 +53,7 @@ namespace TimerDemo
             this.timerDisplay.Size = new System.Drawing.Size(151, 39);
             this.timerDisplay.TabIndex = 1;
             this.timerDisplay.Text = "00:00:00";
+            this.timerDisplay.Click += new System.EventHandler(this.timerDisplay_Click);
             this.timerDisplay.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label1_MouseDown);
             this.timerDisplay.MouseMove += new System.Windows.Forms.MouseEventHandler(this.label1_MouseMove);
             this.timerDisplay.MouseUp += new System.Windows.Forms.MouseEventHandler(this.label1_MouseUp);
@@ -63,6 +65,7 @@ namespace TimerDemo
             this.ControlBox = false;
             this.Controls.Add(this.timerDisplay);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.ShowInTaskbar = false;
