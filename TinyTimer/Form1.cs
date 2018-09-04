@@ -5,7 +5,7 @@ using System.Diagnostics;
 using Microsoft.Win32;
 
 namespace TinyTimer
-{ 
+{
     public partial class Form1 : Form
     {
         private bool mouseDown;
