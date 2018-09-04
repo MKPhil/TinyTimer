@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Diagnostics;
+using Microsoft.Win32;
 
 namespace TimerDemo
 {
@@ -11,18 +12,38 @@ namespace TimerDemo
         private Point lastLocation;
         private Timer demoDispatcher;
         private Stopwatch timer;
+        private DateTime lastDate;
 
         public Form1()
         {
             InitializeComponent();
             timer = new Stopwatch();
-            //PreviewKeyDown += new KeyEventHandler(HandleEsc);
+            lastDate = DateTime.Today;
+
+            SystemEvents.SessionSwitch += new SessionSwitchEventHandler(PauseTimer);
         }
 
-        private void HandleEsc(object sender, KeyEventArgs e)
+        private void PauseTimer(object sender, SessionSwitchEventArgs e)
         {
-            //if (e.Key == Key.Escape)
-            //    Close();
+            if (e.Reason == SessionSwitchReason.SessionLock)
+            {
+                timer.Stop();
+            } else if (e.Reason == SessionSwitchReason.SessionUnlock)
+            {
+                if (DateTime.Today != lastDate)
+                {
+                    lastDate = DateTime.Today;
+                    timer.Restart();
+                }
+                else
+                {
+                    timer.Start();
+                }
+            }
+            
+            //MessageBox.Show("Paused");
+            // e.Reason: Microsoft.Win32.SessionSwitchReason.SessionLock Microsoft.Win32.SessionSwitchReason.SessionUnlock, 
+            
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -110,12 +131,18 @@ namespace TimerDemo
         
         private void DemoDispatcher_Tick(object sender, object e)
         {
+            if (DateTime.Today != lastDate)
+            {
+                lastDate = DateTime.Today;
+                timer.Restart();
+            }
             timerDisplay.Text = timer.Elapsed.ToString(@"hh\:mm\:ss");
         }
 
-        private void timerDisplay_Click(object sender, EventArgs e)
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-
+            //MessageBox.Show (e.KeyCode.ToString());
+            e.Handled = false;
         }
     }
 } 

@@ -53,7 +53,6 @@ namespace TimerDemo
             this.timerDisplay.Size = new System.Drawing.Size(151, 39);
             this.timerDisplay.TabIndex = 1;
             this.timerDisplay.Text = "00:00:00";
-            this.timerDisplay.Click += new System.EventHandler(this.timerDisplay_Click);
             this.timerDisplay.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label1_MouseDown);
             this.timerDisplay.MouseMove += new System.Windows.Forms.MouseEventHandler(this.label1_MouseMove);
             this.timerDisplay.MouseUp += new System.Windows.Forms.MouseEventHandler(this.label1_MouseUp);
@@ -66,6 +65,7 @@ namespace TimerDemo
             this.Controls.Add(this.timerDisplay);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.ShowInTaskbar = false;
@@ -78,7 +78,7 @@ namespace TimerDemo
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
-
+            this.KeyDown += new KeyEventHandler(Form1_KeyDown);
         }
 
         #endregion
