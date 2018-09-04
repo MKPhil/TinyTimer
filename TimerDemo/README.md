@@ -2,12 +2,13 @@ My kids wanted an app that showed them how long they'd been using the PC that da
 
 ## Features:
 * Always on top
+* Automatically configured to run at startup
 * Drag the window to move
 * Puts an icon in Notification Area (aka System Tray), not Taskbar
 * Double-click icon in Notification Area to hide, double-click again to show
 * Cannot close by usual methods! No menu or close button, no Alt-F4! Can only be killed by Task Manager or by using a super-secret Key combination (this is left as an exercise for the reader (read the source!))
 * Timer pauses if the user logs out, uses Switch User, on Hibernate or Sleep
-* Zero-footprint - Doesn't store anything on local file system or in the registry
+* Minimal-footprint - Doesn't store anything on local file system and only registry entry is to make it run at startup
 * Resets each day or at midnight if you're logged on then!
 
 ## Caveats:

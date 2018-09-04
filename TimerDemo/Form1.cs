@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using Microsoft.Win32;
 
-namespace TimerDemo
+namespace TinyTimer
 {
     public partial class Form1 : Form
     {
@@ -24,6 +24,9 @@ namespace TimerDemo
 
             // Watch for the session being locked/unlocked
             SystemEvents.SessionSwitch += new SessionSwitchEventHandler(PauseTimer);
+
+            RegistryKey rk = Registry.CurrentUser.OpenSubKey ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            rk.SetValue("TinyTimer", Application.ExecutablePath);
         }
 
         private void PauseTimer(object sender, SessionSwitchEventArgs e)

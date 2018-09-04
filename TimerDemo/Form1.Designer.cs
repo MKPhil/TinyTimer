@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace TimerDemo
+namespace TinyTimer
 {
     partial class Form1
     {
@@ -39,7 +39,7 @@ namespace TimerDemo
             // NotifyIcon1
             // 
             this.NotifyIcon1.Icon = this.Icon;
-            this.NotifyIcon1.Text = "NotifyIcon1";
+            this.NotifyIcon1.Text = "TinyTimer";
             this.NotifyIcon1.Visible = true;
             this.NotifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon1_MouseDoubleClick);
             // 
@@ -72,12 +72,13 @@ namespace TimerDemo
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.KeyDown += new KeyEventHandler(Form1_KeyDown);
+
         }
 
         #endregion
