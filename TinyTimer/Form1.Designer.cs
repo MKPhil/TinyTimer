@@ -38,7 +38,7 @@ namespace TinyTimer
             // 
             // NotifyIcon1
             // 
-            this.NotifyIcon1.Icon = this.Icon;
+            this.NotifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.NotifyIcon1.Text = "TinyTimer";
             this.NotifyIcon1.Visible = true;
             this.NotifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon1_MouseDoubleClick);
