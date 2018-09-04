@@ -32,16 +32,16 @@ namespace TimerDemo
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.NotifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.timerDisplay = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // notifyIcon1
+            // NotifyIcon1
             // 
-            this.notifyIcon1.Icon = this.Icon;
-            this.notifyIcon1.Text = "notifyIcon1";
-            this.notifyIcon1.Visible = true;
-            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            this.NotifyIcon1.Icon = this.Icon;
+            this.NotifyIcon1.Text = "NotifyIcon1";
+            this.NotifyIcon1.Visible = true;
+            this.NotifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon1_MouseDoubleClick);
             // 
             // timerDisplay
             // 
@@ -53,9 +53,9 @@ namespace TimerDemo
             this.timerDisplay.Size = new System.Drawing.Size(151, 39);
             this.timerDisplay.TabIndex = 1;
             this.timerDisplay.Text = "00:00:00";
-            this.timerDisplay.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label1_MouseDown);
-            this.timerDisplay.MouseMove += new System.Windows.Forms.MouseEventHandler(this.label1_MouseMove);
-            this.timerDisplay.MouseUp += new System.Windows.Forms.MouseEventHandler(this.label1_MouseUp);
+            this.timerDisplay.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Label1_MouseDown);
+            this.timerDisplay.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Label1_MouseMove);
+            this.timerDisplay.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Label1_MouseUp);
             // 
             // Form1
             // 
@@ -82,7 +82,7 @@ namespace TimerDemo
 
         #endregion
 
-        private NotifyIcon notifyIcon1;
+        private NotifyIcon NotifyIcon1;
         private Label timerDisplay;
     }
 }
