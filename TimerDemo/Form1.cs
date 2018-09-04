@@ -10,15 +10,17 @@ namespace TimerDemo
     {
         private bool mouseDown;
         private Point lastLocation;
-        private Timer demoDispatcher;
+        private Timer watchdogDispatcher;
         private Stopwatch timer;
         private DateTime lastDate;
+        private bool appClosing;
 
         public Form1()
         {
             InitializeComponent();
             timer = new Stopwatch();
             lastDate = DateTime.Today;
+            appClosing = false;
 
             SystemEvents.SessionSwitch += new SessionSwitchEventHandler(PauseTimer);
         }
@@ -40,26 +42,21 @@ namespace TimerDemo
                     timer.Start();
                 }
             }
-            
-            //MessageBox.Show("Paused");
-            // e.Reason: Microsoft.Win32.SessionSwitchReason.SessionLock Microsoft.Win32.SessionSwitchReason.SessionUnlock, 
-            
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Alt && e.Shift && e.Control && (e.KeyCode == Keys.F12))
+            {
+                appClosing = true;
+                Close();
+            }
+            e.Handled = false;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing) { e.Cancel = true; }
-        }
-
-        private void Form1_Resize(object sender, EventArgs e)
-        {
-            //if the form is minimized  
-            //hide it from the task bar  
-            //and show the system tray icon (represented by the NotifyIcon control)  
-            if (this.WindowState == FormWindowState.Minimized)
-            {
-                Hide();
-            }
+            if (e.CloseReason == CloseReason.UserClosing && !appClosing) { e.Cancel = true; }
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -113,23 +110,18 @@ namespace TimerDemo
         {
             Form1_MouseUp(sender, e);
         }
-        
-        private void DispatcherTimerSetup()
-        {
-            demoDispatcher = new Timer();
-            demoDispatcher.Tick += DemoDispatcher_Tick;
-            demoDispatcher.Interval = 1; 
-            demoDispatcher.Start();
-
-            timer.Start();
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DispatcherTimerSetup();
+            watchdogDispatcher = new Timer();
+            watchdogDispatcher.Tick += watchdogDispatcher_Tick;
+            watchdogDispatcher.Interval = 1;
+            watchdogDispatcher.Start();
+
+            timer.Start();
         }
         
-        private void DemoDispatcher_Tick(object sender, object e)
+        private void watchdogDispatcher_Tick(object sender, object e)
         {
             if (DateTime.Today != lastDate)
             {
@@ -144,12 +136,6 @@ namespace TimerDemo
                 }
             }
             timerDisplay.Text = timer.Elapsed.ToString(@"hh\:mm\:ss");
-        }
-
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
-            //MessageBox.Show (e.KeyCode.ToString());
-            e.Handled = false;
         }
     }
 } 
